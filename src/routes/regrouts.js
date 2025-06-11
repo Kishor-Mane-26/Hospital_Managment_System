@@ -4,7 +4,7 @@ let router = routes.Router();
 
 router.get('/',regCtrl.regCtrl);
 
-router.get('/Home',regCtrl.homepage);
+router.get("/home",regCtrl.gethomepage);
 
 router.get("/login", regCtrl.getloginpage);
 router.get("/register",regCtrl.getRegPage);
