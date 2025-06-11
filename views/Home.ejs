@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Hospital Management System</title>
+  <!-- <link rel="stylesheet" href="home.css"/> -->
+  <style>
+     body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    header {
+      background-color: #0d6efd;
+      color: white;
+      padding: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 20px;
+      margin: 0;
+      padding: 0;
+    }
+
+    nav ul li a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .login-btn {
+      background: white;
+      color: #0d6efd;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .intro {
+      padding: 40px 20px;
+      background: #f8f9fa;
+      text-align: center;
+    }
+
+    .slider {
+      width: 100%;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .slides {
+      display: flex;
+      width: 300%;
+     
+    }
+
+    .slides img {
+      width: 34%;
+      height: 490px;
+      object-fit: cover;
+    }
+
+    @keyframes slide {
+      0% { margin-left: 0; }
+      33% { margin-left: -100%; }
+      66% { margin-left: -200%; }
+      100% { margin-left: 0; }
+    }
+
+    .section {
+      padding: 40px 20px;
+    }
+
+    .services, .testimonials {
+      background: #fff;
+    }
+
+    .footer {
+      background: #0d6efd;
+      color: white;
+      text-align: center;
+      padding: 20px;
+    }
+
+    h2 {
+      color: #0d6efd;
+    }
+
+    .section-content {
+      max-width: 900px;
+      margin: auto;
+      text-align: center;
+    }
+ .login-btn {
+  background: white;
+  color: #0d6efd;
+  border: 2px solid #0d6efd;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.login-btn:hover {
+  background: #0d6efd;
+  color: white;
+  transform: scale(1.05);
+}
+/* Base styles already added above this line */
+
+/* Mobile Devices (up to 768px) */
+@media (max-width: 768px) {
+  header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  nav ul {
+    flex-direction: column;
+    gap: 10px;
+    padding-left: 0;
+    margin-top: 10px;
+  }
+
+  .login-btn {
+    margin-top: 10px;
+    width: 100%;
+  }
+
+  .intro, .section-content {
+    padding: 20px;
+    text-align: left;
+  }
+
+  .slides img {
+    height: 250px;
+  }
+
+  .section-content h2 {
+    font-size: 22px;
+  }
+
+  .section-content p {
+    font-size: 16px;
+  }
+}
+
+/* Tablet Devices (769px to 1024px) */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .slides img {
+    height: 300px;
+  }
+
+  .section-content {
+    padding: 30px;
+  }
+
+  .section-content h2 {
+    font-size: 26px;
+  }
+
+  .section-content p {
+    font-size: 17px;
+  }
+}
+
+
+.logo-title {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.logo {
+  height: 50px;
+  width: 50px;
+  object-fit: contain;
+}
+
+
+  </style>
+</head>
+<body>
+    <div class="container">
+  <header>
+    <div class="logo-title">
+  <img src="../public/logo.jpg" alt="XYZ Hospital Logo" class="logo" />
+  <h1>XYZ Hospital</h1>
+</div>
+
+    
+    <button class="login-btn">Login</button>
+  </header>
+
+  <!-- Image Slider -->
+  <div class="slider">
+    <div class="slides">
+      <img src="image/BGImg.jpg"/>
+    </div>
+  </div>
+
+  <!-- Welcome Section -->
+  <section class="intro">
+    <h2>Welcome to XYZ Hospital</h2>
+    <p>At XYZ Hospital, we are committed to providing world-class healthcare with advanced technology and compassionate service. 
+       Our team of experienced doctors and healthcare professionals work tirelessly to ensure the best medical treatment for our patients.</p>
+    <p>We offer specialized departments including <strong>Cardiology, Neurology, Orthopedics, Pediatrics, and more</strong>, ensuring comprehensive healthcare under one roof.</p>
+  </section>
+
+  <!-- Services Section -->
+  <section class="section services">
+    <div class="section-content">
+      <h2>Our Services</h2>
+      <p>We provide 24/7 Emergency Care, Online Appointment Booking, Health Check-up Packages, Inpatient & Outpatient Services, and Diagnostic Services including MRI, CT-Scan, and Lab Testing.</p>
+    </div>
+  </section>
+
+  <!-- Testimonials Section -->
+  <section class="section testimonials">
+    <div class="section-content">
+      <h2>What Our Patients Say</h2>
+      <p>"The doctors and staff at XYZ Hospital are truly exceptional. The care I received during my surgery was world-class." – Asha Mehta</p>
+      <p>"Great facilities, kind staff, and everything was well organized. Highly recommend this hospital." – Rohit Sharma</p>
+    </div>
+  </section>
+
+  <!-- Contact Info -->
+  <section class="section contact">
+    <div class="section-content">
+      <h2>Contact Information</h2>
+      <p>📍 Address: 123 Health Street, Mumbai, India</p>
+      <p>📞 Phone: +91-9876543210 | ✉️ Email: info@xyzhospital.com</p>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p>&copy; 2025 XYZ Hospital | All Rights Reserved</p>
+  </footer>
+  </div>
+</body>
+</html>
