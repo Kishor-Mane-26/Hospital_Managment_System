@@ -180,10 +180,11 @@ span a:hover{
                 
                 <div class="input-box">
                    
-                   <header>Create account</header>
+                   <header><h3>Login</h3></header>
+                   <form name ="frm" action="/saveuser" method="post">
                    <div class="input-field">
                         <input type="text" class="input" id="email" required="" autocomplete="off">
-                        <label for="email">Email</label> 
+                        <label for="email">Username</label> 
                     </div> 
                    <div class="input-field">
                         <input type="password" class="input" id="pass" required="">
@@ -192,7 +193,8 @@ span a:hover{
                    <div class="input-field">
                         
                         <input type="submit" class="submit" value="Sign Up">
-                   </div> 
+                   </div>
+                  </form>
                    <div class="signin">
                     <span>Already have an account? <a href="#">Log in here</a></span>
                    </div>
