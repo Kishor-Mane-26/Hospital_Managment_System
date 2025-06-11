@@ -7,3 +7,10 @@ exports.getloginpage=(req,res)=>{
 exports.getRegPage=(req,res)=>{
     res.render("register.ejs");
 };
+
+exports.getUsername=(req,res)=>{
+    let{username} = req.body;
+    if(username == "admin"){
+        res.render("adminpage.ejs");
+    }
+}
