@@ -4,3 +4,9 @@ exports.regCtrl=(req,res)=>{
 exports.getloginpage=(req,res)=>{
     res.render("login.ejs");
 };
+exports.getUsername=(req,res)=>{
+    let{username} = req.body;
+    if(username == "admin"){
+        res.render("adminpage.ejs");
+    }
+}
