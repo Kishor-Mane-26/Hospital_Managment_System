@@ -8,6 +8,10 @@ exports.getloginpage=(req,res)=>{
 exports.gethomepage=(req,res)=>{
     res.render("Home.ejs");
 };
+exports.getRegPage=(req,res)=>{
+    res.render("register.ejs");
+};
+
 exports.getUsername=(req,res)=>{
     let{username} = req.body;
     if(username == "admin"){
