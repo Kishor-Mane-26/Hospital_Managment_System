@@ -15,7 +15,6 @@ exports.getRegPage=(req,res)=>{
 };
 
 exports.getUsername=(req,res)=>{
-    console.log("getusername");
     
        const { username, password } = req.body;
 
