@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Register</title>
+  <title>Register Staff</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
   <style>
     @media (max-width: 576px) {
@@ -18,45 +18,93 @@
 
   <div class="container d-flex justify-content-center align-items-center vh-100">
     <div class="card shadow p-4" style="width: 100%; max-width: 400px;">
-      <h2 class="text-center mb-4">Register</h2>
-      <form action="/savereg" method="POST">
-        <div class="mb-3">
-          <input type="text" name="name" class="form-control" placeholder="Name" required />
+      <h2 class="text-center mb-4">Register Staff</h2>
+      <div class="d-grid gap-2">
+        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#doctorModal">Register Doctor</button>
+        <button class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#receptionistModal">Register Receptionist</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Doctor Registration Modal -->
+  <div class="modal fade" id="doctorModal" tabindex="-1" aria-labelledby="doctorModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <form action="/savereg" method="POST" class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="doctorModalLabel">Register Doctor</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
         </div>
-        <div class="mb-3">
-          <input type="email" name="email" class="form-control" placeholder="Email" required />
+        <div class="modal-body">
+          <input type="hidden" name="role" value="DOCTOR" />
+          <div class="mb-3">
+            <input type="text" name="name" class="form-control" placeholder="Name" required />
+          </div>
+          <div class="mb-3">
+            <input type="email" name="email" class="form-control" placeholder="Email" required />
+          </div>
+          <div class="mb-3">
+            <input type="password" name="password" class="form-control" placeholder="Password" required />
+          </div>
+          <div class="mb-3">
+            <input type="text" name="specialization" class="form-control" placeholder="Specialization" required />
+          </div>
+          <div class="mb-3">
+            <input type="number" name="experience" class="form-control" placeholder="Work Experience (Years)" min="0" required />
+          </div>
+          <!-- <div class="mb-3">
+            <select name="status" class="form-select" required>
+              <option value="">Select Status</option>
+              <option value="ACTIVE">Active</option>
+              <option value="INACTIVE">Inactive</option>
+            </select>
+          </div> -->
         </div>
-        <div class="mb-3">
-          <input type="password" name="password" class="form-control" placeholder="Password" required />
-        </div>
-        <div class="mb-3">
-          <select name="role" class="form-select" required>
-            <option value="">Select Role</option>
-            <option value="ADMIN">Admin</option>
-            <option value="DOCTOR">Doctor</option>
-            <option value="RECEPTIONIST">Receptionist</option>
-          </select>
-        </div>
-        <div class="mb-3">
-          <input type="text" name="specialization" class="form-control" placeholder="Specialization" />
-        </div>
-        <div class="mb-3">
-          <input type="number" name="experience" class="form-control" placeholder="Work Experience (Years)" min="0" />
-        </div>
-        <div class="mb-3">
-          <select name="status" class="form-select">
-            <option value="">Select Status</option>
-            <option value="ACTIVE">Active</option>
-            <option value="INACTIVE">Inactive</option>
-          </select>
-        </div>
-        <div class="d-grid mb-3">
+        <div class="modal-footer">
           <button type="submit" class="btn btn-primary">Register</button>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
         </div>
       </form>
-      <p class="text-center">
-        Already have an account? <a href="../views/login.ejs">Login</a>
-      </p>
+    </div>
+  </div>
+
+  <!-- Receptionist Registration Modal -->
+  <div class="modal fade" id="receptionistModal" tabindex="-1" aria-labelledby="receptionistModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <form action="/savereg" method="POST" class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="receptionistModalLabel">Register Receptionist</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <input type="hidden" name="role" value="RECEPTIONIST" />
+          <div class="mb-3">
+            <input type="text" name="name" class="form-control" placeholder="Name" required />
+          </div>
+          <div class="mb-3">
+            <input type="email" name="email" class="form-control" placeholder="Email" required />
+          </div>
+          <div class="mb-3">
+            <input type="password" name="password" class="form-control" placeholder="Password" required />
+          </div>
+          <!-- <div class="mb-3">
+            <input type="text" name="specialization" class="form-control" placeholder="Specialization" />
+          </div>
+          <div class="mb-3">
+            <input type="number" name="experience" class="form-control" placeholder="Work Experience (Years)" min="0" />
+          </div> -->
+          <!-- <div class="mb-3">
+            <select name="status" class="form-select" required>
+              <option value="">Select Status</option>
+              <option value="ACTIVE">Active</option>
+              <option value="INACTIVE">Inactive</option>
+            </select>
+          </div> -->
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-secondary">Register</button>
+          <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </form>
     </div>
   </div>
 
