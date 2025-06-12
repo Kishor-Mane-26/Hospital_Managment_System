@@ -1,4 +1,5 @@
 let express = require('express');
+let pool = require("./config/db")
 let app = express();
 app.set("view engine", "ejs");
 const path = require("path");
