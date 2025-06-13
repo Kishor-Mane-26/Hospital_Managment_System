@@ -27,36 +27,33 @@ exports.getUsername = (req, res) => {
   }
 };
 
-// const { insertStaff } = require("../models/staffModel");
-// const { hashPassword } = require("../services/hashService");
 
-exports.saveStaff = async (req, res) => {
-  const { name, email, password, role, specialization, experience } = req.body;
+
+exports.registerStaff = async (req, res) => {
+  const { role, name, email, password, specialization, experience, contact } = req.body;
 
   try {
-    const hashedPassword = await services.hashPassword(password);
+    const hashed = await services.hashPassword(password);
 
-    const staff = {
-      name,
-      email,
-      password: hashedPassword,
-      role,
-      specialization,
-      experience,
-    };
+    // Save user and get userId
+    const userId = await models.createUser(email, hashed, role);
+    console.log(userId);
+    
+    // Save extra info based on role
+    if (role === "doctor") {
+      await models.createDoctor(name, specialization, experience, userId);
+    } else if (role === "receptionist") {
+      await models.createReceptionist(name, contact, userId);
+    }
 
-    models.insertStaff(staff, (err, result) => {
-      if (err) {
-        console.error("DB Insert Error:", err);
-        return res.status(500).send("Error registering staff.");
-      }
-      res.redirect("/register");
-    });
+    res.redirect("/register");
   } catch (err) {
-    console.error("Hash Error:", err);
-    res.status(500).send("Internal server error");
+    console.error("Error in registerStaff:", err);
+    res.status(500).send("Registration failed.");
   }
 };
+
+
 
 exports.viewDoctors = (req, res) => {
   const doctors = models.GetAllDoctor((err, result) => {

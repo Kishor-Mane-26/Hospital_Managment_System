@@ -11,7 +11,7 @@ router.get("/register",regCtrl.getRegPage);
 
 router.post("/saveuser",regCtrl.getUsername);
 
-router.post("/savereg", regCtrl.saveStaff);
+router.post("/savereg", regCtrl.registerStaff);
 
 router.get('/viewdoctors', regCtrl.viewDoctors);
 module.exports=router;
