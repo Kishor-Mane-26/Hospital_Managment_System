@@ -1,8 +1,5 @@
 const db = require("../config/db");
 
-// Create user
-
-// Insert user and return userId
 exports.createUser = async (email, password, role) => {
   try {
     const [result] = await db.execute(
@@ -10,10 +7,10 @@ exports.createUser = async (email, password, role) => {
       [email, password, role]
     );
 
-    console.log("Result from db.execute():", result);
+    // console.log("Result from db.execute():", result);
 
     const insertId = result.insertId;
-    console.log("insertId:", insertId);
+    // console.log("insertId:", insertId);
 
     return insertId;
   } catch (err) {
@@ -36,10 +33,10 @@ exports.createDoctor = async (name, specialization, experience, userId) => {
 };
 
 // Create receptionist
-exports.createReceptionist = async (name, contact, userId) => {
+exports.createReceptionist = async (name, userId, contact) => {
   try {
     await db.execute(
-      'INSERT INTO receptionist (name, contact, userId) VALUES (?, ?, ?)',
+      'INSERT INTO receptions (name, userId, contact) VALUES (?, ?, ?)',
       [name, contact, userId]
     );
   } catch (err) {
@@ -48,19 +45,24 @@ exports.createReceptionist = async (name, contact, userId) => {
 };
 
 
-exports.GetAllDoctor = (callback) => {
-  let doctorsQuery = "select * from doctors";
+// src/models/staffModel.js
 
-  db.query(doctorsQuery, [], (err, result) => {
-    if (err) {
-      console.log("Error in GetAll Doctors " + err);
-      return callback(err, null);
-    } else {
-      console.log("Get all doctors ", result);
-    }
-    callback(null, result)
-  })
+exports.getAllDoctor = async () => {
+  try {
+    const [rows] = await db.query('SELECT * FROM doctors');
+    return rows;
+  } catch (err) {
+    console.error("Error in getAllDoctor:", err);
+    throw err;
+  }
+};
 
-}
-
-
+exports.GetAllReceptionists= async () => {
+  try {
+    const [rows] = await db.query('SELECT * FROM receptions');
+    return rows;
+  } catch (err) {
+    console.error("GetAllReceptionists:", err);
+    throw err;
+  }
+};

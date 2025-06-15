@@ -13,5 +13,10 @@ router.post("/saveuser",regCtrl.getUsername);
 
 router.post("/savereg", regCtrl.registerStaff);
 
+router.get("/admindashboard",regCtrl.getAdminDashboard);
+
 router.get('/viewdoctors', regCtrl.viewDoctors);
+
+router.get('/viewrecptions', regCtrl.getAllReceptionists);
+
 module.exports=router;
