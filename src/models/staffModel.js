@@ -45,7 +45,16 @@ exports.createReceptionist = async (name, userId, contact) => {
 };
 
 
-// src/models/staffModel.js
+exports.getlogin = async (email) => {
+  try {
+    const [rows] = await db.query('SELECT * FROM user WHERE email = ?', [email]);
+    return rows;
+  } catch (err) {
+    console.error("Error in getlogin:", err);
+    throw err;
+  }
+};
+
 
 exports.getAllDoctor = async () => {
   try {

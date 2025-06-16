@@ -16,19 +16,53 @@ exports.getRegPage = (req, res) => {
   res.render("register.ejs");
 };
 
-exports.getAdminDashboard=(req,res) => {
+exports.getAdminDashboard = (req, res) => {
   res.render("adminpage.ejs");
 }
+exports.getReceptonDashbord = (req, res)=>{
+  res.render("receptionDashbord");
+}
 
-exports.getUsername = (req, res) => {
-  const { username, password } = req.body;
 
-  if (username === "admin" && password === "admin123") {
-    res.render("adminpage.ejs");
-  } else {
-    res.send("Invalid username or password");
+exports.getUsername = async (req, res) => {
+  const { email, password } = req.body;
+
+  try {
+    const users = await models.getlogin(email); // Only fetch by email
+
+    if (users.length === 0) {
+      return res.send('Invalid email or password');
+    }
+
+    const user = users[0];
+
+    const isPasswordValid = await services.comparePassword(password, user.password); // ✅ Compare here
+
+    if (!isPasswordValid) {
+      return res.send('Invalid email or password');
+    }
+
+    // Redirect based on role
+    switch (user.role) {
+      case 'doctor':
+        return res.render('doctorDashboard.ejs', { email: user.email });
+
+      case 'receptionist':
+        return res.render('receptionDashbord.ejs', { email: user.email });
+
+      case 'admin':
+        return res.render('adminpage', { email: user.email });
+
+      default:
+        return res.send('Unknown role. Please contact admin.');
+    }
+
+  } catch (error) {
+    console.error('Login error:', error);
+    res.status(500).send('Internal Server Error');
   }
 };
+
 
 
 
@@ -41,8 +75,7 @@ exports.registerStaff = async (req, res) => {
     // Save user and get userId
     const userId = await models.createUser(email, hashed, role);
     console.log(userId);
-    
-    // Save extra info based on role
+
     if (role === "doctor") {
       await models.createDoctor(name, specialization, experience, userId);
     } else if (role === "receptionist") {
@@ -61,8 +94,7 @@ exports.registerStaff = async (req, res) => {
 exports.viewDoctors = async (req, res) => {
   try {
     const result = await models.getAllDoctor();
-    console.log(result);
-    
+
     res.render("viewDoctors", { doctors: result });
   } catch (err) {
     console.error("Error while getting doctors:", err);
@@ -81,25 +113,25 @@ exports.getAllReceptionists = async (req, res) => {
 };
 
 exports.deleteDoctor = async (req, res) => {
-    try {
-        const doctorId = req.params.id;
-        await models.deleteDoctorById(doctorId);
-        const doctors = await models.getAllDoctor();
-        res.render('viewDoctors', { doctors :doctors});
-    } catch (error) {
-        console.error('Error deleting doctor:', error);
-        res.status(500).send('Server Error');
-    }
+  try {
+    const doctorId = req.params.id;
+    await models.deleteDoctorById(doctorId);
+    const doctors = await models.getAllDoctor();
+    res.render('viewDoctors', { doctors: doctors });
+  } catch (error) {
+    console.error('Error deleting doctor:', error);
+    res.status(500).send('Server Error');
+  }
 };
 
 exports.deleteReceptionist = async (req, res) => {
-    try {
-        const receptionId = req.params.id;
-        await models.deleteRecptionsById(receptionId);
-        const receptions = await models.GetAllReceptionists();
-        res.render('viewRecptions', { receptions: receptions });
-    } catch (error) {
-        console.error('Error deleting receptionist:', error);
-        res.status(500).send('Server Error');
-    }
+  try {
+    const receptionId = req.params.id;
+    await models.deleteRecptionsById(receptionId);
+    const receptions = await models.GetAllReceptionists();
+    res.render('viewRecptions', { receptions: receptions });
+  } catch (error) {
+    console.error('Error deleting receptionist:', error);
+    res.status(500).send('Server Error');
+  }
 };

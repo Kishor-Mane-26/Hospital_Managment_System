@@ -161,6 +161,18 @@
             text-decoration: underline;
             color: #000;
         }
+      .input-field select.input {
+    height: 45px;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    outline: none;
+    margin-bottom: 20px;
+    color: #40414a;
+}
+.input-field select.input:focus {
+    border-bottom: 1px solid #743ae1;
+}
 
         @media only screen and (max-width: 768px) {
             .side-image {
@@ -214,20 +226,32 @@
                             <h3>Login</h3>
                         </header>
                         <form name="frm" action="/saveuser" method="post">
-                            <div class="input-field">
-                                <input type="text" class="input" name="username" required autocomplete="off">
-                                <label for="email">Username</label>
-                            </div>
+    <div class="input-field">
+        <input type="text" class="input" name="email" required autocomplete="off">
+        <label for="email">Email</label>
+    </div>
 
-                            <div class="input-field">
-                                <input type="password" class="input" name="password" required>
-                                <label for="pass">Password</label>
-                            </div>
+    <div class="input-field">
+        <input type="password" class="input" name="password" required>
+        <label for="pass">Password</label>
+    </div>
 
-                            <div class="input-field">
-                                <input type="submit" class="submit" value="Sign In">
-                            </div>
-                        </form>
+    <!-- New Role Selector -->
+    <div class="input-field">
+        <select class="input" name="role" required>
+            <option value="" disabled selected>Select Role</option>
+            <option value="admin">Admin</option>
+            <option value="reception">Receptionist</option>
+            <option value="doctor">Doctor</option>
+        </select>
+        <!-- <label for="role">Role</label> -->
+    </div>
+
+    <div class="input-field">
+        <input type="submit" class="submit" value="Sign In">
+    </div>
+</form>
+
 
                         <div class="signin">
                             <span>Already have an account? <a href="#">Log in here</a></span>
