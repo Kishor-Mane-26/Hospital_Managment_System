@@ -61,6 +61,8 @@ exports.registerStaff = async (req, res) => {
 exports.viewDoctors = async (req, res) => {
   try {
     const result = await models.getAllDoctor();
+    console.log(result);
+    
     res.render("viewDoctors", { doctors: result });
   } catch (err) {
     console.error("Error while getting doctors:", err);
@@ -76,4 +78,28 @@ exports.getAllReceptionists = async (req, res) => {
     console.error("Error while getting receptions:", err);
     res.status(500).send("Error fetching receptions");
   }
+};
+
+exports.deleteDoctor = async (req, res) => {
+    try {
+        const doctorId = req.params.id;
+        await models.deleteDoctorById(doctorId);
+        const doctors = await models.getAllDoctor();
+        res.render('viewDoctors', { doctors :doctors});
+    } catch (error) {
+        console.error('Error deleting doctor:', error);
+        res.status(500).send('Server Error');
+    }
+};
+
+exports.deleteReceptionist = async (req, res) => {
+    try {
+        const receptionId = req.params.id;
+        await models.deleteRecptionsById(receptionId);
+        const receptions = await models.GetAllReceptionists();
+        res.render('viewRecptions', { receptions: receptions });
+    } catch (error) {
+        console.error('Error deleting receptionist:', error);
+        res.status(500).send('Server Error');
+    }
 };
