@@ -15,6 +15,8 @@ router.post("/savereg", regCtrl.registerStaff);
 
 router.get("/admindashboard",regCtrl.getAdminDashboard);
 
+router.get("/repdashbord",regCtrl.getReceptonDashbord);
+
 router.get('/viewdoctors', regCtrl.viewDoctors);
 
 router.get('/viewrecptions', regCtrl.getAllReceptionists);
