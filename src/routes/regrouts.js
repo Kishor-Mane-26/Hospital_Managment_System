@@ -19,4 +19,8 @@ router.get('/viewdoctors', regCtrl.viewDoctors);
 
 router.get('/viewrecptions', regCtrl.getAllReceptionists);
 
+router.get('/deletedoctor/:id', regCtrl.deleteDoctor);
+
+router.get('/deletereception/:id', regCtrl.deleteReceptionist);
+
 module.exports=router;

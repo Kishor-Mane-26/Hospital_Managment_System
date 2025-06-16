@@ -66,3 +66,13 @@ exports.GetAllReceptionists= async () => {
     throw err;
   }
 };
+
+exports.deleteDoctorById = async (id) => {
+    const [result] = await db.query('DELETE FROM doctors WHERE doctorId = ?', [id]);
+    return result;
+};
+
+exports.deleteRecptionsById = async (id) => {
+    const [result] = await db.query('DELETE FROM receptions WHERE  receptionId = ?', [id])
+    return result;
+};
