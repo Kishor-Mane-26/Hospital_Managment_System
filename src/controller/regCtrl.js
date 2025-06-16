@@ -1,4 +1,3 @@
-const { response } = require("../app");
 let models = require("../models/staffModel");
 let services = require("../services/hashService");
 
@@ -16,6 +15,10 @@ exports.gethomepage = (req, res) => {
 exports.getRegPage = (req, res) => {
   res.render("register.ejs");
 };
+
+exports.getAdminDashboard=(req,res) => {
+  res.render("adminpage.ejs");
+}
 
 exports.getUsername = (req, res) => {
   const { username, password } = req.body;
@@ -55,13 +58,48 @@ exports.registerStaff = async (req, res) => {
 
 
 
-exports.viewDoctors = (req, res) => {
-  const doctors = models.GetAllDoctor((err, result) => {
-    if (err) {
-      console.log("Error while gettinfg doxtor");
-    } else {
-      console.log("Controller doctors ", result);
-    }
+exports.viewDoctors = async (req, res) => {
+  try {
+    const result = await models.getAllDoctor();
+    console.log(result);
+    
     res.render("viewDoctors", { doctors: result });
-  });
+  } catch (err) {
+    console.error("Error while getting doctors:", err);
+    res.status(500).send("Error fetching doctors");
+  }
+};
+
+exports.getAllReceptionists = async (req, res) => {
+  try {
+    const result = await models.GetAllReceptionists();
+    res.render("viewRecptions", { receptions: result });
+  } catch (err) {
+    console.error("Error while getting receptions:", err);
+    res.status(500).send("Error fetching receptions");
+  }
+};
+
+exports.deleteDoctor = async (req, res) => {
+    try {
+        const doctorId = req.params.id;
+        await models.deleteDoctorById(doctorId);
+        const doctors = await models.getAllDoctor();
+        res.render('viewDoctors', { doctors :doctors});
+    } catch (error) {
+        console.error('Error deleting doctor:', error);
+        res.status(500).send('Server Error');
+    }
+};
+
+exports.deleteReceptionist = async (req, res) => {
+    try {
+        const receptionId = req.params.id;
+        await models.deleteRecptionsById(receptionId);
+        const receptions = await models.GetAllReceptionists();
+        res.render('viewRecptions', { receptions: receptions });
+    } catch (error) {
+        console.error('Error deleting receptionist:', error);
+        res.status(500).send('Server Error');
+    }
 };
