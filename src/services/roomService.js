@@ -39,3 +39,9 @@ exports.getRoomTypes = async () => {
 exports.getRoomStatuses = async () => {
   return ['available', 'occupy'];
 };
+
+exports.updateRoom = async (roomId, updatedData) => {
+  const { type, charges_per_day, status } = updatedData;
+  const query = `UPDATE room SET type = ?, charges_per_day = ?, status = ? WHERE roomId = ?`;
+  await db.execute(query, [type, charges_per_day, status, roomId]);
+};

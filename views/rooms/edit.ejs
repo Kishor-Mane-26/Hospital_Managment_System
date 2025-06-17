@@ -2,32 +2,79 @@
 <html>
 <head>
   <title>Edit Room</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <style>
+    body {
+      background-color: #f4f7fa;
+      font-family: 'Segoe UI', sans-serif;
+    }
+    .edit-room-container {
+      max-width: 450px;
+      margin: 60px auto;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      background-color: #ffffff;
+    }
+    h2 {
+      text-align: center;
+      margin-bottom: 25px;
+      color: #333;
+    }
+    .form-group label {
+      font-weight: 500;
+    }
+    .btn-primary {
+      width: 100%;
+    }
+    .back-link {
+      text-align: center;
+      margin-top: 20px;
+    }
+    .back-link a {
+      color: #007bff;
+      text-decoration: none;
+    }
+    .back-link a:hover {
+      text-decoration: underline;
+    }
+  </style>
 </head>
 <body>
-  <h2 style="text-align:center;">Edit Room</h2>
- <form action="/rooms/updateRoom/<%= room.roomId %>" method="POST" style="width: 300px; margin: auto;">
-  <label>Type:</label><br>
-  <select name="type" required>
-    <% roomTypes.forEach(type => { %>
-      <option value="<%= type %>" <%= room.type === type ? 'selected' : '' %>><%= type %></option>
-    <% }) %>
-  </select><br><br>
+  <%- include("../receptionDashbord") %>
 
-  <label>Charges/Day:</label><br>
-  <input type="number" name="charges_per_day" value="<%= room.charges_per_day %>" required><br><br>
+  <div class="edit-room-container">
+    <h2>Edit Room</h2>
+    <form action="/rooms/updateRoom/<%= room.roomId %>" method="POST">
+      <div class="form-group">
+        <label for="type">Type:</label>
+        <select class="form-control" id="type" name="type" required>
+          <% roomTypes.forEach(type => { %>
+            <option value="<%= type %>" <%= room.type === type ? 'selected' : '' %>><%= type %></option>
+          <% }) %>
+        </select>
+      </div>
 
-  <label>Status:</label><br>
-  <select name="status" required>
-    <% roomStatuses.forEach(status => { %>
-      <option value="<%= status %>" <%= room.status === status ? 'selected' : '' %>><%= status %></option>
-    <% }) %>
-  </select><br><br>
+      <div class="form-group">
+        <label for="charges">Charges/Day:</label>
+        <input type="number" class="form-control" id="charges" name="charges_per_day" value="<%= room.charges_per_day %>" required>
+      </div>
 
-  <button type="submit">Update</button>
-</form>
+      <div class="form-group">
+        <label for="status">Status:</label>
+        <select class="form-control" id="status" name="status" required>
+          <% roomStatuses.forEach(status => { %>
+            <option value="<%= status %>" <%= room.status === status ? 'selected' : '' %>><%= status %></option>
+          <% }) %>
+        </select>
+      </div>
 
-  <div style="text-align:center; margin-top:20px;">
-    <a href="/rooms">Back to List</a>
+      <button type="submit" class="btn btn-primary mt-3">Update Room</button>
+    </form>
+
+    <div class="back-link">
+      <a href="/rooms">← Back to Room List</a>
+    </div>
   </div>
 </body>
 </html>

@@ -2,42 +2,63 @@
 <html>
 <head>
   <title>Room Management</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <style>
-    table { border-collapse: collapse; width: 80%; margin: auto; }
-    th, td { border: 1px solid #ddd; padding: 10px; text-align: center; }
-    a.button { padding: 5px 10px; background-color: #4CAF50; color: white; text-decoration: none; border-radius: 5px; }
-    .delete-btn { background-color: red; }
+    .action-btn {
+      margin-right: 5px;
+    }
+    .table-container {
+      margin-top: 40px;
+    }
+    .delete-btn {
+      background-color: #dc3545;
+      color: white;
+      border: none;
+    }
+    .delete-btn:hover {
+      background-color: #c82333;
+    }
   </style>
 </head>
 <body>
-  <h1 style="text-align:center;">Room Management</h1>
-  <div style="text-align:center; margin: 20px;">
-    <a href="/rooms/create" class="button">Add Room</a>
+  <%- include("../receptionDashbord.ejs") %>
+
+  <div class="container mt-5">
+    <h2 class="text-center mb-4">Room Management</h2>
+
+    <div class="text-center mb-3">
+      <a href="/rooms/create" class="btn btn-primary">Add Room</a>
+    </div>
+
+    <div class="table-responsive table-container">
+      <table class="table table-bordered table-hover text-center">
+        <thead class="thead-dark">
+          <tr>
+            <th>ID</th>
+            <th>Type</th>
+            <th>Charges/Day</th>
+            <th>Status</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% rooms.forEach(room => { %>
+            <tr>
+              <td><%= room.roomId %></td>
+              <td><%= room.type %></td>
+              <td>₹ <%= room.charges_per_day %></td>
+              <td><%= room.status %></td>
+              <td>
+                <a href="/rooms/<%= room.roomId %>/edit" class="btn btn-sm btn-success action-btn">Edit</a>
+                <form action="/rooms/<%= room.roomId %>/delete" method="POST" class="d-inline">
+                  <button type="submit" class="btn btn-sm delete-btn" onclick="return confirm('Delete this room?')">Delete</button>
+                </form>
+              </td>
+            </tr>
+          <% }) %>
+        </tbody>
+      </table>
+    </div>
   </div>
-  <table>
-    <tr>
-      <th>ID</th>
-      <th>Type</th>
-      <th>Charges/Day</th>
-      <th>Status</th>
-      <th>Actions</th>
-    </tr>
-    <% rooms.forEach(room => { %>
-      <tr>
-        <td><%= room.roomId %></td>
-        <td><%= room.type %></td>
-        <td><%= room.charges_per_day %></td>
-        <td><%= room.status %></td>
-        <td>
-          <a class="button" href="/rooms/<%= room.roomId %>/edit">Edit</a>
-          <form action="/rooms/<%= room.roomId %>/delete" method="POST">
-            <button type="submit" class="button delete-btn" onclick="return confirm('Delete this room?')">Delete</button>
-          </form>
-        </td>
-      </tr>
-    <% }) %>
-  </table>
 </body>
 </html>
-
-
