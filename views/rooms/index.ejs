@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Room Management</title>
+  <style>
+    table { border-collapse: collapse; width: 80%; margin: auto; }
+    th, td { border: 1px solid #ddd; padding: 10px; text-align: center; }
+    a.button { padding: 5px 10px; background-color: #4CAF50; color: white; text-decoration: none; border-radius: 5px; }
+    .delete-btn { background-color: red; }
+  </style>
+</head>
+<body>
+  <h1 style="text-align:center;">Room Management</h1>
+  <div style="text-align:center; margin: 20px;">
+    <a href="/rooms/create" class="button">Add Room</a>
+  </div>
+  <table>
+    <tr>
+      <th>ID</th>
+      <th>Type</th>
+      <th>Charges/Day</th>
+      <th>Status</th>
+      <th>Actions</th>
+    </tr>
+    <% rooms.forEach(room => { %>
+      <tr>
+        <td><%= room.roomId %></td>
+        <td><%= room.type %></td>
+        <td><%= room.charges_per_day %></td>
+        <td><%= room.status %></td>
+        <td>
+          <a class="button" href="/rooms/<%= room.roomId %>/edit">Edit</a>
+          <form action="/rooms/<%= room.roomId %>/delete" method="POST">
+            <button type="submit" class="button delete-btn" onclick="return confirm('Delete this room?')">Delete</button>
+          </form>
+        </td>
+      </tr>
+    <% }) %>
+  </table>
+</body>
+</html>
+
+
