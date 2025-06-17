@@ -10,5 +10,6 @@ app.use(express.json());
 app.use(express.static("public"));
 
 app.use(require('./routes/regrouts'));
+app.use(require('./routes/roomRoutes'));
 
 module.exports = app;
