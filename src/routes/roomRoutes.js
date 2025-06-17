@@ -15,7 +15,8 @@ router.post('/rooms', roomController.createRoom);
 router.get('/rooms/:id/edit', roomController.showEditRoomForm);
 
 // Handle room update
-router.post('/rooms/:id', roomController.updateRoom);
+router.post('/rooms/updateRoom/:id', roomController.updateRoom);
+
 
 // Handle room deletion
 router.post('/rooms/:id/delete', roomController.deleteRoom);
