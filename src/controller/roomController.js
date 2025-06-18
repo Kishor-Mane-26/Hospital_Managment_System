@@ -46,7 +46,7 @@ exports.updateRoom = async (req, res) => {
 
     // Call your service or DB function to update the room
     await roomService.updateRoom(roomId, { type, charges_per_day, status });
-    console.log('Updating room with type:', type);  // should be exactly like 'Private'
+    console.log('Updating room with type:', type);
 
     res.redirect('/rooms');
   } catch (error) {
