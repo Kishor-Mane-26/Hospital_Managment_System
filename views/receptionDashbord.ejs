@@ -108,6 +108,11 @@
       color: white;
       background-color: #a94442;
     }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
   </style>
 </head>
 <body>
@@ -119,26 +124,28 @@
       <span class="ml-2">Reception</span>
     </div>
     <ul>
-  <!-- Patient Management -->
-  <li><i class="fas fa-user-plus"></i> <span><a href="/addpatient">Add Patient</a></span></li>
-  <li><i class="fas fa-users"></i> <span><a href="/viewpatients">View Patients</a></span></li>
-  <li><i class="fas fa-calendar-check"></i> <span><a href="/appointments">Appointments</a></span></li>
-  <li><i class="fas fa-file-invoice-dollar"></i> <span><a href="/billing">Billing</a></span></li>
+      <!-- Patient Management -->
+      <li><i class="fas fa-user-plus"></i> <span><a href="/addpatient">Add Patient</a></span></li>
+      <li><i class="fas fa-users"></i> <span><a href="/viewpatients">View Patients</a></span></li>
+      <li><i class="fas fa-calendar-check"></i> <span><a href="/appointments">Appointments</a></span></li>
+      <li><i class="fas fa-file-invoice-dollar"></i> <span><a href="/billing">Billing</a></span></li>
 
-  <!-- Room Management -->
-  <li><i class="fas fa-plus-square"></i> <span><a href="/rooms/create">Add Room</a></span></li>
-  <li><i class="fas fa-bed"></i> <span><a href="/rooms">View Rooms</a></span></li>
+      <!-- Room Management -->
+      <li><i class="fas fa-plus-square"></i> <span><a href="/rooms/create">Add Room</a></span></li>
+      <li><i class="fas fa-bed"></i> <span><a href="/rooms">View Rooms</a></span></li>
 
-  <!-- Other Buttons -->
-  <li>
-    <button class="btn btn-secondary w-100 mt-2" onclick="toggleDarkMode()">
-      <i class="fas fa-moon"></i> <span>Toggle Dark Mode</span>
-    </button>
-  </li>
+      <!-- Nurse Management -->
+      <li><i class="fas fa-user-nurse"></i> <span><a href="/register-nurse">Add Nurse</a></span></li>
+      <li><i class="fas fa-user-md"></i> <span><a href="/nurses">View Nurses</a></span></li>
 
-  <li class="logout mt-2"><i class="fas fa-sign-out-alt"></i> <span>Logout</span></li>
-</ul>
-
+      <!-- Other -->
+      <li>
+        <button class="btn btn-secondary w-100 mt-2" onclick="toggleDarkMode()">
+          <i class="fas fa-moon"></i> <span>Toggle Dark Mode</span>
+        </button>
+      </li>
+      <li class="logout mt-2"><i class="fas fa-sign-out-alt"></i> <span>Logout</span></li>
+    </ul>
   </div>
 
   <!-- Toggle Sidebar Button -->
@@ -149,7 +156,7 @@
   <!-- Content Area -->
   <div class="content" id="content">
     <h1>Welcome to the Reception Dashboard</h1>
-    <p>Manage appointments, patients, and billing efficiently.</p>
+    <p>Manage appointments, patients, billing, and nurse records efficiently.</p>
   </div>
 
   <!-- Scripts -->
