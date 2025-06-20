@@ -1,0 +1,42 @@
+<%- include("receptionDashbord.ejs") %>
+<div class="container mt-5">
+  <h2 class="mb-4">Edit Nurse</h2>
+  <form action="/editupdate/<%= nurse.id %>" method="POST">
+    <div class="form-group">
+      <label>Email</label>
+      <input type="email" name="email" class="form-control" value="<%= nurse.email %>" required />
+    </div>
+    <div class="form-group">
+      <label>Password</label>
+      <input type="text" name="password" class="form-control" value="<%= nurse.password %>" required />
+    </div>
+    <div class="form-group">
+      <label>Department</label>
+      <input type="text" name="department" class="form-control" value="<%= nurse.department %>" />
+    </div>
+    <div class="form-group">
+      <label>Shift</label>
+      <select name="shift" class="form-control">
+        <option value="morning" <%= nurse.shift === 'morning' ? 'selected' : '' %>>Morning</option>
+        <option value="evening" <%= nurse.shift === 'evening' ? 'selected' : '' %>>Evening</option>
+        <option value="night" <%= nurse.shift === 'night' ? 'selected' : '' %>>Night</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label>Qualification</label>
+      <input type="text" name="qualification" class="form-control" value="<%= nurse.qualification %>" />
+    </div>
+    <div class="form-group">
+      <label>Experience</label>
+      <input type="number" name="experience" class="form-control" value="<%= nurse.experience %>" />
+    </div>
+    <div class="form-group">
+      <label>Status</label>
+      <select name="status" class="form-control">
+        <option value="1" <%= nurse.status === 1 ? 'selected' : '' %>>Active</option>
+        <option value="0" <%= nurse.status === 0 ? 'selected' : '' %>>Inactive</option>
+      </select>
+    </div>
+    <button type="submit" class="btn btn-primary">Update Nurse</button>
+  </form>
+</div>

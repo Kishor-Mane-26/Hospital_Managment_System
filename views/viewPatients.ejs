@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>View Patients</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <style>
+    body { background-color: #f4f7fa; }
+    .table-container {
+      margin: 40px auto;
+      max-width: 95%;
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+  </style>
+</head>
+<body>
+  <%- include("receptionDashbord.ejs") %>
+  <div class="container table-container">
+    <h2 class="text-center mb-4">Patients List</h2>
+    <form class="form-inline mb-3" method="GET" action="/patients/searchpatient">
+      <input class="form-control mr-2" type="text" name="keyword" placeholder="Search by name/contact">
+      <button class="btn btn-outline-primary" type="submit">Search</button>
+    </form>
+    <table class="table table-bordered table-hover">
+      <thead class="thead-dark">
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Contact</th>
+          <th>Room No</th>
+          <th>Doctor ID</th>
+          <th>Admitted</th>
+          <th>Discharge</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% patients.forEach(p => { %>
+          <tr>
+            <td><%= p.patientId %></td>
+            <td><%= p.name %></td>
+            <td><%= p.contact %></td>
+            <td><%= p.room_no %></td>
+            <td><%= p.doctorId %></td>
+            <td><%= p.admitted ? p.admitted.toISOString().slice(0, 10) : '' %></td>
+            <td><%= p.discharge ? p.discharge.toISOString().slice(0, 10) : '' %></td>
+            <td>
+              <a class="btn btn-sm btn-warning" href="/patients/editpatient/<%= p.patientId %>">Edit</a>
+              <a class="btn btn-sm btn-danger" href="/patients/deletepatient/<%= p.patientId %>" onclick="return confirm('Are you sure?')">Delete</a>
+            </td>
+          </tr>
+        <% }) %>
+      </tbody>
+    </table>
+  </div>
+</body>
+</html>
