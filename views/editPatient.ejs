@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Edit Patient</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <style>
+    body { background-color: #f8f9fa; }
+    .form-container {
+      max-width: 600px;
+      margin: 40px auto;
+      padding: 30px;
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+  </style>
+</head>
+<body>
+  <%- include("receptionDashbord.ejs") %>
+  <div class="container form-container">
+    <h2 class="text-center mb-4">Edit Patient</h2>
+    <form method="POST" action="/patients//updatepatient/:id/<%= patient.patientId %>">
+      <div class="form-group">
+        <label>Name</label>
+        <input name="name" class="form-control" value="<%= patient.name %>" required>
+      </div>
+      <div class="form-group">
+        <label>Age</label>
+        <input name="age" type="number" class="form-control" value="<%= patient.age %>">
+      </div>
+      <div class="form-group">
+        <label>Contact</label>
+        <input name="contact" class="form-control" value="<%= patient.contact %>">
+      </div>
+      <div class="form-group">
+        <label>Issue</label>
+        <input name="issue" class="form-control" value="<%= patient.issue %>">
+      </div>
+      <div class="form-group">
+        <label>Admitted</label>
+        <input name="admitted" type="date" class="form-control" value="<%= patient.admitted ? patient.admitted.toISOString().slice(0,10) : '' %>">
+      </div>
+      <div class="form-group">
+        <label>Discharge</label>
+        <input name="discharge" type="date" class="form-control" value="<%= patient.discharge ? patient.discharge.toISOString().slice(0,10) : '' %>">
+      </div>
+      <div class="form-group">
+        <label>Room No</label>
+        <input name="room_no" type="number" class="form-control" value="<%= patient.room_no %>">
+      </div>
+      <div class="form-group">
+        <label>Doctor ID</label>
+        <input name="doctorId" type="number" class="form-control" value="<%= patient.doctorId %>">
+      </div>
+      <div class="form-group">
+        <label>Gender</label>
+        <select name="gender" class="form-control">
+          <option value="male" <%= patient.gender === 'male' ? 'selected' : '' %>>Male</option>
+          <option value="female" <%= patient.gender === 'female' ? 'selected' : '' %>>Female</option>
+          <option value="other" <%= patient.gender === 'other' ? 'selected' : '' %>>Other</option>
+        </select>
+      </div>
+      <button type="submit" class="btn btn-success btn-block">Update</button>
+    </form>
+  </div>
+</body>
+</html>

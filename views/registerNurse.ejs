@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Register Nurse</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <style>
+    body {
+      background-color: #f8f9fa;
+    }
+    .form-container {
+      max-width: 500px;
+      margin: 50px auto;
+      padding: 30px;
+      background-color: #fff;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+  </style>
+</head>
+<body>
+  <%- include("receptionDashbord.ejs") %>
+  <div class="container form-container">
+    <h2 class="text-center mb-4">Register Nurse</h2>
+    <form action="/regnurse" method="POST">
+      <div class="form-group">
+        <label>Email</label>
+        <input type="email" name="email" class="form-control" required />
+      </div>
+      <div class="form-group">
+        <label>Password</label>
+        <input type="password" name="password" class="form-control" required />
+      </div>
+
+      <!-- NURSE TABLE FIELDS -->
+      <div class="form-group">
+        <label>Department</label>
+        <input type="text" name="department" class="form-control" />
+      </div>
+      <div class="form-group">
+        <label>Shift</label>
+        <select name="shift" class="form-control">
+          <option value="morning">Morning</option>
+          <option value="evening">Evening</option>
+          <option value="night">Night</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Qualification</label>
+        <input type="text" name="qualification" class="form-control" />
+      </div>
+      <div class="form-group">
+        <label>Experience (in years)</label>
+        <input type="number" name="experience" class="form-control" />
+      </div>
+
+      <!-- HIDDEN ROLE -->
+      <input type="hidden" name="role" value="nurse" />
+
+      <button type="submit" class="btn btn-primary btn-block">Register</button>
+    </form>
+  </div>
+</body>
+</html>

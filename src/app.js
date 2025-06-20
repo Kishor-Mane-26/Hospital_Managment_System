@@ -11,5 +11,9 @@ app.use(express.static("public"));
 
 app.use(require('./routes/regrouts'));
 app.use(require('./routes/roomRoutes'));
+const nurseRoutes = require('./routes/nurseRouts');
+app.use('/', nurseRoutes);
+const patientRoutes = require('./routes/patientRoutes');
+app.use('/patients', patientRoutes);
 
 module.exports = app;
